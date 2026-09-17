@@ -3,7 +3,7 @@ module sync_fifo #(
     parameter int DEPTH = 16
 )(
     input logic clk,
-    input logic rst_in,
+    input logic rst_n,
 
     input logic wr_en,
     input logic [DATA_WIDTH-1:0] wr_data,

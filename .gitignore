@@ -1,0 +1,39 @@
+# Vivado generated files
+# ==============================
+# Vivado generated files
+# ==============================
+
+# Vivado cache
+vivado/sync_fifo/sync_fifo.cache/
+
+# Vivado generated output
+vivado/sync_fifo/sync_fifo.gen/
+
+# Vivado hardware manager files
+vivado/sync_fifo/sync_fifo.hw/
+
+# Vivado IP user files
+vivado/sync_fifo/sync_fifo.ip_user_files/
+
+# Vivado simulation generated files
+vivado/sync_fifo/sync_fifo.sim/
+
+# Vivado synthesis / implementation runs
+vivado/sync_fifo/sync_fifo.runs/
+
+# Vivado temporary files
+vivado/sync_fifo/.Xil/
+
+# Vivado logs and journal files
+vivado/sync_fifo/*.log
+vivado/sync_fifo/*.jou
+vivado/sync_fifo/*.str
+
+
+# ==============================
+# Keep important Vivado project files
+# ==============================
+
+# The following are intentionally NOT ignored:
+# vivado/sync_fifo/sync_fifo.xpr
+# vivado/sync_fifo/sync_fifo.srcs/

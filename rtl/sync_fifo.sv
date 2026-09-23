@@ -3,7 +3,7 @@ module sync_fifo #(
     parameter int DEPTH = 16
 )(
     input logic clk,
-    input logic rst_in,
+    input logic rst_n,
 
     input logic wr_en,
     input logic [DATA_WIDTH-1:0] wr_data,
@@ -23,7 +23,7 @@ localparam int COUNT_WIDTH = $clog2(DEPTH+1);
 logic [DATA_WIDTH-1:0] mem [0:DEPTH-1];
 
 // Pointers and counters
-logic [PTR_WIDTH-1:0] wr_ptr,
+logic [PTR_WIDTH-1:0] wr_ptr;
 logic [PTR_WIDTH-1:0] rd_ptr;
 logic [COUNT_WIDTH-1:0] count;
 
@@ -43,10 +43,10 @@ assign full = (count == DEPTH);
 // Sequential logic
 
 always_ff @(posedge clk) begin
-    if (rst_n) begin
+    if (!rst_n) begin
         wr_ptr <= '0;
         rd_ptr <= '0;
-        count <= 0;
+        count <= '0;
         rd_data <= '0;
     end
     else begin
@@ -55,7 +55,7 @@ always_ff @(posedge clk) begin
         if (do_write) begin
             mem[wr_ptr] <= wr_data;
 
-            if (wr_ptr = DEPTH-1)
+            if (wr_ptr == DEPTH-1)
                 wr_ptr <= '0;
             else
                 wr_ptr <= wr_ptr + 1'b1;
@@ -65,7 +65,7 @@ always_ff @(posedge clk) begin
         if (do_read) begin
             rd_data <= mem[rd_ptr];
 
-            if (rd_ptr =DEPTH-1)
+            if (rd_ptr == DEPTH-1)
                 rd_ptr <= '0;
             else
                 rd_ptr <= rd_ptr + 1'b1;
